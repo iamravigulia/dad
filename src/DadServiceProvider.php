@@ -1,11 +1,11 @@
 <?php
 
-namespace edgewizz\fillup;
+namespace edgewizz\dad;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
-class FillupServiceProvider extends ServiceProvider
+class DadServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -14,7 +14,7 @@ class FillupServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('Edgewizz\Fillup\Controllers\FillupController');
+        $this->app->make('Edgewizz\Dad\Controllers\DadController');
     }
 
     /**
@@ -27,7 +27,9 @@ class FillupServiceProvider extends ServiceProvider
         // dd($this);
         $this->loadMigrationsFrom(__DIR__.'/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes.php');
-        $this->loadViewsFrom(__DIR__ . '/components', 'fillup');
-        Blade::component('fillup::form.open', 'form.open');
+        $this->loadViewsFrom(__DIR__ . '/components', 'dad');
+        Blade::component('dad::dad.open', 'dad.open');
+        Blade::component('dad::dad.index', 'dad.index');
+        Blade::component('dad::dad.edit', 'dad.edit');
     }
 }

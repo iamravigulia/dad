@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFillupQuesTable extends Migration
+class CreateDadAnsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateFillupQuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('fmt_fillup_ques', function (Blueprint $table) {
+        Schema::create('fmt_dad_ans', function (Blueprint $table) {
             $table->id();
-            $table->longText('question')->nullable();
+            $table->foreignId('question_id');
+            $table->longText('answer');
+            $table->tinyInteger('active')->default(1);
             $table->foreignId('media_id')->nullable();
-            $table->boolean('active')->default(0);
-            $table->string('hint')->nullable();
+            $table->tinyInteger('arrange')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateFillupQuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fmt_fillup_ques');
+        Schema::dropIfExists('fmt_dad_ans');
     }
 }
